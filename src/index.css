@@ -3,4 +3,7 @@
 @theme {
   --font-sans: Inter, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
+
+  --color-strong: rgba(0, 6, 38, 0.9);
+  --color-weak: rgba(0, 9, 51, 0.65);
 }
