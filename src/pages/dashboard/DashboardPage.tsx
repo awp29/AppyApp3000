@@ -1,7 +1,16 @@
 import clsx from "clsx";
 import DefaultLayout from "../../components/DefaultLayout";
+import { useQuery } from "@tanstack/react-query";
+import { getDashboardData } from "./api";
 
 const DashboardPage = () => {
+  const getDashboardDataQuery = useQuery({
+    queryKey: ["getDashboardData"],
+    queryFn: getDashboardData,
+  });
+
+  console.log("getDashboardDataQuery", getDashboardDataQuery.data);
+
   return (
     <DefaultLayout>
       <div className={clsx("mb-12 flex justify-between")}>

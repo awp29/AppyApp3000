@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { createEmployee, getEmployees } from "./api";
-import { Employee } from "./types";
+import { Employee } from "../../types";
 import clsx from "clsx";
 import Button from "../../components/button/Button";
 import { format } from "date-fns";
