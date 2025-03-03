@@ -2,8 +2,11 @@ import clsx from "clsx";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useQuery } from "@tanstack/react-query";
 import { getDashboardData } from "./api";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 const DashboardPage = () => {
+  // const { user } = useAuthenticator();
+
   const getDashboardDataQuery = useQuery({
     queryKey: ["getDashboardData"],
     queryFn: getDashboardData,
