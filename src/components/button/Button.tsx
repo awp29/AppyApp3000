@@ -21,15 +21,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { variant = "primary", size = "md", children } = props;
+  const {
+    className,
+    variant = "primary",
+    size = "md",
+    children,
+    ...rest
+  } = props;
 
   return (
     <button
-      {...props}
+      {...rest}
       className={clsx(
         "w-fit cursor-pointer rounded-md font-mono",
         variants[variant],
         sizeStyles[size],
+        className,
       )}
     >
       {children}

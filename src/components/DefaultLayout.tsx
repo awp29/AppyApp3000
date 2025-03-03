@@ -4,6 +4,7 @@ import Link from "./nav/Link";
 import Logo from "../assets/logo.svg?react";
 import IconButton from "./button/IconButton";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router";
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -13,6 +14,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
   const { children } = props;
 
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+
+  const navigate = useNavigate();
 
   return (
     <div className={clsx("flex w-full")}>
@@ -36,7 +39,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
 
           <ul className="mt-6 flex flex-col gap-2 px-2">
             <li>
-              <Link to="/" icon="pie-chart">
+              <Link to="/dashboard" icon="pie-chart">
                 Dashboard
               </Link>
             </li>
@@ -46,6 +49,16 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
               </Link>
             </li>
           </ul>
+
+          <div className="mt-auto mb-6 px-2">
+            <button
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <button
