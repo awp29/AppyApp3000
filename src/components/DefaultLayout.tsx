@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import FeatherIcon from "feather-icons-react";
 import { useNavbar } from "./nav/NavBarContext";
+import { useAuth } from "../Authenticator";
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -16,8 +17,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
   const { children } = props;
 
   const { isSidebarOpen, toggleSidebar } = useNavbar();
-
   const navigate = useNavigate();
+  const auth = useAuth();
 
   return (
     <div className={clsx("flex w-full")}>
@@ -78,7 +79,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
             <button
               className="text-weak mx-2 flex h-8 w-full cursor-pointer items-center gap-0 rounded-md px-2 hover:bg-zinc-200"
               onClick={() => {
-                navigate("/");
+                auth.logout();
+                // navigate("/");
               }}
             >
               <motion.div

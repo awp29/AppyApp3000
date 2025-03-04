@@ -5,9 +5,17 @@ import Button from "../../components/button/Button";
 import Input from "../../components/form/Input";
 import PasswordInput from "../../components/form/PasswordInput";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../Authenticator";
+import { confirmSignIn } from "aws-amplify/auth";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   return (
     <div className={clsx("flex h-screen w-full")}>
@@ -26,20 +34,48 @@ const LoginPage: React.FC = () => {
 
           <form
             className={clsx("w-full")}
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              navigate("/dashboard");
+
+              auth.login("peirs.andrew@gmail.com", "Password2!");
+              // navigate("/dashboard");
+
+              // setIsLoading(true);
+              // navigate("/dashboard");
             }}
           >
             <div className={clsx("mt-6 flex w-full flex-col gap-2")}>
-              <Input type="email" placeholder="Email" />
-              <PasswordInput placeholder="Password" />
+              <Input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <PasswordInput
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
-            <Button type="submit" className="mt-4 w-full">
+            <Button type="submit" isLoading={isLoading} className="mt-4 w-full">
               Login
             </Button>
           </form>
+
+          {/* <Button
+            onClick={async () => {
+              const data = await confirmSignIn({
+                challengeResponse: "Password2!",
+              });
+
+              console.log("Confirm sign in data", data);
+            }}
+            variant="secondary"
+            className="mt-10 w-full"
+          >
+            Confirm Sign in
+          </Button> */}
         </div>
       </div>
     </div>

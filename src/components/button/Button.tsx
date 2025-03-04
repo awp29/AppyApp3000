@@ -1,5 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react";
+import { Oval } from "react-loader-spinner";
 import clsx from "clsx";
+import { cn } from "../../utils";
 
 const sizeStyles = {
   sm: "text-sm px-4 h-8",
@@ -17,6 +19,7 @@ const variants = {
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "tertiary";
   size?: "sm" | "md" | "lg";
+  isLoading?: boolean;
   children: React.ReactNode;
 }
 
@@ -25,6 +28,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     className,
     variant = "primary",
     size = "md",
+    isLoading,
     children,
     ...rest
   } = props;
@@ -32,14 +36,30 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       {...rest}
-      className={clsx(
-        "w-fit cursor-pointer rounded-md font-mono",
+      className={cn(
+        "font-mon w-fit cursor-pointer rounded-md",
         variants[variant],
         sizeStyles[size],
+        isLoading && "pointer-events-none bg-zinc-400",
         className,
       )}
+      disabled={isLoading}
     >
-      {children}
+      <div className={cn("flex items-center justify-center gap-2")}>
+        {isLoading && (
+          <Oval
+            visible
+            height={size === "lg" ? "20" : "16"}
+            width={size === "lg" ? "20" : "16"}
+            strokeWidth={4}
+            color="#fff"
+            secondaryColor="#eee"
+            ariaLabel="oval-loading"
+          />
+        )}
+
+        <span>{children}</span>
+      </div>
     </button>
   );
 };
