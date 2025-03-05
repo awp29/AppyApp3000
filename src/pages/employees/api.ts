@@ -1,5 +1,5 @@
 import { client } from "../../client";
-import { Employee } from "./types";
+import { Employee } from "../../types";
 
 export const getEmployees = async () => {
   return await client.models.Employee.list();

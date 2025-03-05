@@ -37,11 +37,11 @@ const LoginPage: React.FC = () => {
             onSubmit={async (e) => {
               e.preventDefault();
 
-              auth.login("peirs.andrew@gmail.com", "Password2!");
+              // auth.login("peirs.andrew@gmail.com", "Password2!");
               // navigate("/dashboard");
 
               // setIsLoading(true);
-              // navigate("/dashboard");
+              navigate("/dashboard");
             }}
           >
             <div className={clsx("mt-6 flex w-full flex-col gap-2")}>

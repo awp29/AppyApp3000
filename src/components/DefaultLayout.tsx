@@ -4,7 +4,6 @@ import Link from "./nav/Link";
 import Logo from "../assets/logo.svg?react";
 import IconButton from "./button/IconButton";
 import { motion } from "motion/react";
-import { useNavigate } from "react-router";
 import FeatherIcon from "feather-icons-react";
 import { useNavbar } from "./nav/NavBarContext";
 import { useAuth } from "../Authenticator";
@@ -17,7 +16,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
   const { children } = props;
 
   const { isSidebarOpen, toggleSidebar } = useNavbar();
-  const navigate = useNavigate();
   const auth = useAuth();
 
   return (
@@ -135,7 +133,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
             }}
           />
         </div>
-        <div className={clsx("px-4 py-12")}>{children}</div>
+        <div className={clsx("px-4 pb-12")}>{children}</div>
       </motion.div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { Oval } from "react-loader-spinner";
-import clsx from "clsx";
 import { cn } from "../../utils";
 
 const sizeStyles = {
@@ -9,9 +8,11 @@ const sizeStyles = {
   lg: "px-5 h-12",
 };
 
+// AP-TODO: Need to figure out the drop-shadows that are being used
 const variants = {
   primary: "bg-black text-white hover:bg-zinc-700",
-  secondary: "bg-white text-black border border-black hover:bg-zinc-100",
+  secondary:
+    "bg-white text-black border border-black hover:bg-zinc-100 bg-white",
   tertiary:
     "text-black underline underline-offset-4 hover:bg-zinc-100 hover:no-underline",
 };

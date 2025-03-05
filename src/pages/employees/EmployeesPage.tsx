@@ -14,6 +14,35 @@ import { format } from "date-fns";
 import React from "react";
 import IconButton from "../../components/button/IconButton";
 import DefaultLayout from "../../components/DefaultLayout";
+import Input from "../../components/form/Input";
+import SearchInput from "../../components/searchInput/SearchInput";
+
+const mockEmployees: Employee[] = [
+  {
+    firstName: "Ben",
+    lastName: "Smith",
+    email: "b.smith@appyapp.com",
+    team: "Comet",
+    role: "Backend Developer",
+    createdAt: "2019-06-12T09:30:00.000Z",
+  },
+  {
+    firstName: "Charlie",
+    lastName: "Johnson",
+    email: "c.johnson@appyapp.com",
+    team: "Nebula",
+    role: "UX Designer",
+    createdAt: "2021-03-08T16:15:00.000Z",
+  },
+  {
+    firstName: "Diana",
+    lastName: "Brown",
+    email: "d.brown@appyapp.com",
+    team: "Rocket",
+    role: "Backend Developer",
+    createdAt: "2020-11-19T08:00:00.000Z",
+  },
+];
 
 const columnHelper = createColumnHelper<Employee>();
 
@@ -114,8 +143,8 @@ const EmployeesPage = () => {
   });
 
   const table = useReactTable({
-    data: listEmployeesQuery.data?.data || [],
-    // data: mockEmployees,
+    // data: listEmployeesQuery.data?.data || [],
+    data: mockEmployees,
     columns,
     enableRowSelection: true,
     getCoreRowModel: getCoreRowModel(),
@@ -135,11 +164,10 @@ const EmployeesPage = () => {
   return (
     <DefaultLayout>
       <div className={clsx("mb-12 flex justify-between")}>
-        <div className={clsx("flex", "flex-col", "gap-2")}>
+        <div className={clsx("flex", "flex-col", "gap-1")}>
           <h1 className={clsx("text-strong text-[40px]")}>Employee Page</h1>
           <p className={clsx("text-weak")}>
-            Manage employee records efficiently with options to add, edit, and
-            delete entries.
+            Manage employee add, delete and update.
           </p>
         </div>
 
@@ -147,13 +175,7 @@ const EmployeesPage = () => {
       </div>
 
       <div className={clsx("mb-6 flex justify-between")}>
-        <input
-          type="text"
-          placeholder="Type to search"
-          className={clsx(
-            "h-8 w-56 rounded-md border border-black p-2 font-mono text-sm",
-          )}
-        />
+        <SearchInput className="w-56" placeholder="Type to search" s="sm" />
 
         {numberOfSelectedRows > 0 && (
           <div className={clsx("flex items-center gap-2")}>
